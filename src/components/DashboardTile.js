@@ -11,7 +11,7 @@ class DashboardTile extends React.Component {
     }
     return (
       <Container>
-        <h3>{this.props.team.username}</h3>
+        <h4>{this.props.team.username}</h4>
         <p>{names_string}</p>
         <ProgressBar now={Math.min(4+100*(this.props.team.clue_num / (NUM_CLUES+1)),100)} label={`#${this.props.team.clue_num}`} />
       </Container>

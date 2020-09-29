@@ -65,7 +65,7 @@ class Registration extends React.Component {
             <h1>Welcome to the Amazing Race SF!</h1>
             <h2>Enter your team's info below to register:</h2>
             <Form onSubmit={this.handleSubmit}>
-              <p>Your team username (memorize the exact spelling, you’ll need this later):</p>
+              <h4>Your team username (memorize the exact spelling, you’ll need this later):</h4>
               <InputGroup className="sign-in__form__input">
                 <InputGroup.Prepend className="remove-radius--right">
                   <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
@@ -83,7 +83,7 @@ class Registration extends React.Component {
                   Oops! This username already exists.
                 </Form.Control.Feedback>
               </InputGroup>
-              <p>Teammate 1:</p>
+              <h4>Teammate 1:</h4>
               <Form.Control
                 className=""
                 type="text"
@@ -93,7 +93,7 @@ class Registration extends React.Component {
                 value={this.state.teammate_1}
                 required
               />
-              <p>Teammate 2:</p>
+              <h4>Teammate 2:</h4>
               <Form.Control
                 className=""
                 type="text"
@@ -103,7 +103,7 @@ class Registration extends React.Component {
                 value={this.state.teammate_2}
                 required
               />
-              <p>Teammate 3 (if applicable):</p>
+              <h4>Teammate 3 (if applicable):</h4>
               <Form.Control
                 className=""
                 type="text"

@@ -86,7 +86,7 @@ class CheckIn extends React.Component {
             <h2>{this.state.clue_subheading}</h2>
             {this.state.clue_valid && 
             <Form onSubmit={this.handleSubmit}>
-              <p>Enter your team's username:</p>
+              <h4>Enter your team's username:</h4>
               <InputGroup className="sign-in__form__input">
                 <InputGroup.Prepend className="remove-radius--right">
                   <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>

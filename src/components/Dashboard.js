@@ -36,11 +36,12 @@ class Dashboard extends React.Component {
       clue_log: team.clue_log,
       clue_num: this.get_latest_clue(team.clue_log)
     }));
-    const graph_data = team_data.map((team) => ({
-      label: team.username,
-      data: team.clue_log.map((value, index) => ([value, index]) )
-    }) );
-    console.log(graph_data)
+    
+    // const graph_data = team_data.map((team) => ({
+    //   label: team.username,
+    //   data: team.clue_log.map((value, index) => ([value, index]) )
+    // }) );
+
     // Sort Leaderboard
     team_data = team_data.sort((a, b) => (a.clue_num < b.clue_num) ? 1 : -1)
     // Create list of tiles
