@@ -18,7 +18,6 @@ class Dashboard extends React.Component {
     db.collection('teams').get().then((snapshot) => {
       this.setState({ teams: snapshot.docs.map(doc => doc.data()) });
     });
-    console.log(this.state.teams)
   }
 
   get_latest_clue = (clue_log) => {

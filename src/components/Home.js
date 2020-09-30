@@ -4,8 +4,26 @@ import Col from "react-bootstrap/Col"
 import Container from "react-bootstrap/Container"
 import Countdown from "react-countdown"
 import golden_gate from '../assets/golden_gate.png'
+import {db} from '../services/firebase';
+import FullPageLoader from "./FullPageLoader";
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      start_time: 1601922600000
+    };
+  }
+
+  componentDidMount() {
+    db.collection('params').doc('sf').get().then((doc) => {
+      this.setState({ 
+        loading: false,
+        start_time: doc.data().start_time 
+      });
+    });
+  }
 
   renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -60,25 +78,30 @@ class Home extends React.Component {
       <Container className="px-5">
         <Row>
           <Col md={{ span: 8, offset: 2 }}>
-            <div className="home__countdown" >
-              <div className="">
-                <img  
-                  className="start__grocery-list-img"
-                  src={golden_gate}
-                ></img>
+            {this.state.loading ? 
+              <FullPageLoader />
+            :
+              <div>
+                <div className="home__countdown" >
+                  <div className="">
+                    <img  
+                      className="start__grocery-list-img"
+                      src={golden_gate}
+                    ></img>
+                  </div>
+                  <h1 className="pb-2">READY, SET, GO</h1>
+                  <hr></hr>
+                  <h2 className="pt-2">The Amazing Race starts in:</h2>
+                  <Countdown
+                    date={this.state.start_time}
+                    renderer={this.renderer}
+                  />
+                </div>
+                <hr></hr>
+                <i class="py-3 fa fa-map-marker fa-3" aria-hidden="true"></i>
+                <p className="light-text-override">Dolores Park, SF</p>
               </div>
-              <h1 className="pb-2">READY, SET, GO</h1>
-              <hr></hr>
-              <h2 className="pt-2">The Amazing Race starts in:</h2>
-              <Countdown
-                //date={Date.now() + 10000}
-                date={1601746200000}
-                renderer={this.renderer}
-              />
-            </div>
-            <hr></hr>
-            <i class="py-3 fa fa-map-marker fa-3" aria-hidden="true"></i>
-            <p className="light-text-override">Dolores Park, SF</p>
+            } 
           </Col>
         </Row>
       </Container>

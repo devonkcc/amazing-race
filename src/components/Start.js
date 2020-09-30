@@ -23,8 +23,15 @@ class Start extends React.Component {
       gatorade_upc: "",
       snickers_upc_valid: false,
       gatorade_upc_valid: false,
-      username_invalid_flag: false
+      username_invalid_flag: false,
+      start_time: 1601922600000
     };
+  }
+
+  componentDidMount() {
+    db.collection('params').doc('sf').get().then((doc) => {
+      this.setState({ start_time: doc.data().start_time });
+    });
   }
 
   renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -127,7 +134,7 @@ class Start extends React.Component {
                 <h2 className="pt-2">The Amazing Race starts in:</h2>
                 <Countdown
                   //date={Date.now() + 10000}
-                  date={1601746200000}
+                  date={this.state.start_time}
                   renderer={this.renderer}
                 />
               </div>
