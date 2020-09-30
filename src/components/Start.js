@@ -127,7 +127,7 @@ class Start extends React.Component {
                 <h2 className="pt-2">The Amazing Race starts in:</h2>
                 <Countdown
                   //date={Date.now() + 10000}
-                  date={"2020-10-03T10:30-0700"}
+                  date={1601746200000}
                   renderer={this.renderer}
                 />
               </div>
@@ -187,7 +187,7 @@ class Start extends React.Component {
                           <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
                         </InputGroup.Prepend>
                         <Form.Control
-                          className="remove-radius--left"
+                          className={this.state.username_invalid_flag ? "remove-radius--left is-invalid" : "remove-radius--left"}
                           type="text"
                           name="username"
                           placeholder="username"

@@ -72,7 +72,7 @@ class Home extends React.Component {
               <h2 className="pt-2">The Amazing Race starts in:</h2>
               <Countdown
                 //date={Date.now() + 10000}
-                date={"2020-10-03T10:30-0700"}
+                date={1601746200000}
                 renderer={this.renderer}
               />
             </div>
