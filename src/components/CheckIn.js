@@ -1,7 +1,8 @@
 import React from "react";
 import Container from "react-bootstrap/Container"
-import Form from "react-bootstrap/Form"
 import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import InputGroup from "react-bootstrap/InputGroup"
 import FullPageLoader from "./FullPageLoader";
@@ -36,7 +37,7 @@ class CheckIn extends React.Component {
       }
       else {
         this.setState({
-          clue_name: "Opps, something went wrong...",
+          clue_name: "Nope!",
           clue_subheading: "The clue ID seems to be invalid. Try scanning the clue code again.",
           loading: false,
         }); 
@@ -77,37 +78,45 @@ class CheckIn extends React.Component {
 
   render() {
     return (
-      <Container>
-        {this.state.loading ? 
-          <FullPageLoader />
-        :
-          <div>
-            <h1>{this.state.clue_name}</h1>
-            <h2>{this.state.clue_subheading}</h2>
-            {this.state.clue_valid && 
-            <Form onSubmit={this.handleSubmit}>
-              <h4>Enter your team's username:</h4>
-              <InputGroup className="sign-in__form__input">
-                <InputGroup.Prepend className="remove-radius--right">
-                  <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                </InputGroup.Prepend>
-                <Form.Control
-                  className={this.state.username_invalid_flag ? "remove-radius--left is-invalid" : "remove-radius--left"}
-                  type="text"
-                  name="username"
-                  placeholder="username"
-                  onChange={this.handleChange}
-                  value={this.state.username}
-                  required
-                />
-                <Form.Control.Feedback type="invalid">
-                  Oops! This username isn't valid.
-                </Form.Control.Feedback>
-              </InputGroup>
-              <Button className="" type="submit">Check In</Button>
-            </Form>}
-          </div>
-        }
+      <Container className="px-5">
+        <Row>
+          <Col md={{ span: 8, offset: 2 }}>
+            {this.state.loading ? 
+              <FullPageLoader />
+            :
+              <div>
+                <h1 className="mt-5">{this.state.clue_name}</h1>
+                <h3>{this.state.clue_subheading}</h3>
+                {this.state.clue_valid && 
+                  <span>
+                    <hr></hr>
+                    <Form onSubmit={this.handleSubmit}>
+                      <h4>Enter your team's username:</h4>
+                      <InputGroup className="sign-in__form__input">
+                        <InputGroup.Prepend className="remove-radius--right">
+                          <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control
+                          className={this.state.username_invalid_flag ? "remove-radius--left is-invalid" : "remove-radius--left"}
+                          type="text"
+                          name="username"
+                          placeholder="username"
+                          onChange={this.handleChange}
+                          value={this.state.username}
+                          required
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          Oops! This username isn't valid.
+                        </Form.Control.Feedback>
+                      </InputGroup>
+                      <Button className="mt-3 mb-5 px-4" type="submit">Check In</Button>
+                    </Form>
+                  </span>
+                }
+              </div>
+            }
+          </Col>
+        </Row>
       </Container>
     );
   }

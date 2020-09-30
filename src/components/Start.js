@@ -1,5 +1,7 @@
 import React from "react";
 import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import InputGroup from "react-bootstrap/InputGroup"
@@ -29,7 +31,47 @@ class Start extends React.Component {
     if (completed) {
       this.setState({ countdown_complete: true }); 
     }
-  return <span>{days}:{hours}:{minutes}:{seconds}</span>
+  return <span>
+    <Row className="mx-2 start__countdown__general justify-content-center">
+      <Col sm={1}></Col>
+      <Col>
+        <Row className="start__countdown__value justify-content-center">
+          {days}
+        </Row>
+        <Row className="start__countdown__subheading justify-content-center">
+          DAYS
+        </Row>
+      </Col>
+      <Col className="px-1 start__countdown__colon">:</Col>
+      <Col>
+        <Row className="start__countdown__value justify-content-center">
+          {hours}
+        </Row>
+        <Row className="start__countdown__subheading justify-content-center">
+          HOURS
+        </Row>
+      </Col>
+      <Col className="px-1 start__countdown__colon">:</Col> 
+      <Col>
+        <Row className="start__countdown__value justify-content-center">
+          {minutes}
+        </Row>
+        <Row className="start__countdown__subheading justify-content-center">
+          MINUTES
+        </Row>
+      </Col>
+      <Col className="px-1 start__countdown__colon">:</Col>
+      <Col>
+        <Row className="start__countdown__value justify-content-center">
+          {seconds}
+        </Row>
+        <Row className="start__countdown__subheading justify-content-center">
+          SECONDS
+        </Row>
+      </Col>
+      <Col sm={1}></Col>
+    </Row>
+    </span>
   };
 
   handleChange = (event) => {
@@ -39,9 +81,13 @@ class Start extends React.Component {
     }
     this.setState({
       [event.target.name]: event.target.value, 
-      username_invalid_flag: temp_username_invalid_flag, 
-      snickers_upc_valid: VALID_SNICKERS_UPC.includes(this.state.snickers_upc),
-      gatorade_upc_valid: VALID_GATORADE_UPC.includes(this.state.gatorade_upc)
+      username_invalid_flag: temp_username_invalid_flag
+    },
+    () => {
+      this.setState({
+        snickers_upc_valid: VALID_SNICKERS_UPC.includes(this.state.snickers_upc),
+        gatorade_upc_valid: VALID_GATORADE_UPC.includes(this.state.gatorade_upc) 
+      });
     });
   }
 
@@ -71,94 +117,103 @@ class Start extends React.Component {
 
   render() {
     return (
-      <Container>
-        {!this.state.countdown_complete ? 
-          <div>
-            <h1>Ready, Set, Go</h1>
-            <h2>Race starts in:</h2>
-            <Countdown
-              date={Date.now() + 5000}
-              //date={"2020-10-03T10:30:00-0700"}
-              renderer={this.renderer}
-            />
-          </div>
-        :
-          <div>
-            {!this.state.show_clue ? 
-              <div>
-                <h3>Winning the amazing race will require proper nutrition and hydration. Head to the closest grocery / convenience store and buy these items.</h3>
-                <h3>Take a selfie with the groceries and enter the barcode on the back to unlock the first clue…</h3>
-                <div className="">
-                  <img  
-                    className=""
-                    src={barcode_example}
-                  ></img>
-                </div>
-                <hr />
-                <Form onSubmit={this.handleSubmit}>
-                  <h4>Regular sized snickers bar (peanut alert!):</h4>
-                  <div className="">
-                    <img  
-                      className=""
-                      src={snickers}
-                    ></img>
-                  </div>
-                  <Form.Control
-                    className=""
-                    type="text"
-                    name="snickers_upc"
-                    placeholder="############"
-                    onChange={this.handleChange}
-                    value={this.state.snickers_upc}
-                    required
-                  />
-                  <h4>Yellow gatorade:</h4>
-                  <div className="">
-                    <img  
-                      className=""
-                      src={gatorade}
-                    ></img>
-                  </div>
-                  <Form.Control
-                    className=""
-                    type="text"
-                    name="gatorade_upc"
-                    placeholder="############"
-                    onChange={this.handleChange}
-                    value={this.state.gatorade_upc}
-                  />
-                  <hr />
-                  <h4>Enter your team's username:</h4>
-                  <InputGroup className="sign-in__form__input">
-                    <InputGroup.Prepend className="remove-radius--right">
-                      <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <Form.Control
-                      className={this.state.username_invalid_flag ? "remove-radius--left is-invalid" : "remove-radius--left"}
-                      type="text"
-                      name="username"
-                      placeholder="username"
-                      onChange={this.handleChange}
-                      value={this.state.username}
-                      required
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      Oops! This username isn't valid.
-                    </Form.Control.Feedback>
-                  </InputGroup>
-                  <Button className="" type="submit">Reveal Clue</Button>
-                </Form>
+      <Container className="px-5">
+        <Row>
+          <Col md={{ span: 8, offset: 2 }}>
+            {!this.state.countdown_complete ? 
+              <div className="start__countdown" >
+                <h1 className="pb-2">READY, SET, GO</h1>
+                <hr></hr>
+                <h2 className="pt-2">The Amazing Race starts in:</h2>
+                <Countdown
+                  //date={Date.now() + 10000}
+                  date={"2020-10-03T10:30-0700"}
+                  renderer={this.renderer}
+                />
               </div>
             :
               <div>
-                <h2>Nice work! You’ve unlocked the fist clue!</h2>
-                <hr />
-                <h1>Clue #1</h1>
-                <p>Clue that leads to Patricia’s Green…</p>
+                {!this.state.show_clue ? 
+                  <div>
+                    <h2 className="mt-3">Grocery Challenge:</h2>
+                    <h3>Winning the amazing race will require proper nutrition and hydration. Head to the closest grocery / convenience store and buy the two items below.</h3>
+                    <h3>Take a selfie with the groceries and enter the barcode on the back to unlock the first clue…</h3>
+                    <div className="">
+                      <img  
+                        className="start__grocery-list-img"
+                        src={barcode_example}
+                      ></img>
+                    </div>
+                    <hr />
+                    <Form onSubmit={this.handleSubmit}>
+                      <div className="start__grocery-list">
+                        <h4>Snickers Bar <span className="light-text-override">(🥜 ALERT!)</span>:</h4>
+                        <div className="">
+                          <img  
+                            className="start__grocery-list-img"
+                            src={snickers}
+                          ></img>
+                        </div>
+                        <Form.Control
+                          className={"start__grocery-list__form " + (this.state.snickers_upc.length >= 12 ? this.state.snickers_upc_valid ? "is-valid" : "is-invalid" : "")}
+                          type="text"
+                          name="snickers_upc"
+                          placeholder="############"
+                          onChange={this.handleChange}
+                          value={this.state.snickers_upc}
+                          required
+                        />
+                        <hr></hr>
+                        <h4>Yellow gatorade:</h4>
+                        <div className="">
+                          <img  
+                            className="start__grocery-list-img"
+                            src={gatorade}
+                          ></img>
+                        </div>
+                        <Form.Control
+                          className={"start__grocery-list__form " + (this.state.gatorade_upc.length >= 12 ? this.state.gatorade_upc_valid ? "is-valid" : "is-invalid" : "")}
+                          type="text"
+                          name="gatorade_upc"
+                          placeholder="############"
+                          onChange={this.handleChange}
+                          value={this.state.gatorade_upc}
+                        />
+                      </div>
+                      <hr />
+                      <h4>Enter your team's username:</h4>
+                      <InputGroup className="sign-in__form__input">
+                        <InputGroup.Prepend className="remove-radius--right">
+                          <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+                        </InputGroup.Prepend>
+                        <Form.Control
+                          className="remove-radius--left"
+                          type="text"
+                          name="username"
+                          placeholder="username"
+                          onChange={this.handleChange}
+                          value={this.state.username}
+                          required
+                        />
+                        <Form.Control.Feedback type="invalid">
+                          Oops! This username isn't valid.
+                        </Form.Control.Feedback>
+                      </InputGroup>
+                      <Button className="mt-3 mb-5 px-4" type="submit">Reveal Clue</Button>
+                    </Form>
+                  </div>
+                :
+                  <div>
+                    <h2 className="mt-5">Nice work! You’ve unlocked the fist clue!</h2>
+                    <hr />
+                    <h1 className="mb-2">Clue #1</h1>
+                    <p className="start__grocery-list">Clue that leads to Patricia’s Green…</p>
+                  </div>
+                }
               </div>
-            }
-          </div>
-        }
+              }
+          </Col>
+        </Row>
       </Container>
     );
   }

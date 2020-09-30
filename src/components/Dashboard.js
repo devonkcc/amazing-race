@@ -1,6 +1,8 @@
 import React from "react";
 import Container from "react-bootstrap/Container"
 import DashboardTile from "./DashboardTile";
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 import DashboardGraph from "./DashboardGraph";
 import {db} from '../services/firebase';
 
@@ -36,7 +38,7 @@ class Dashboard extends React.Component {
       clue_log: team.clue_log,
       clue_num: this.get_latest_clue(team.clue_log)
     }));
-    
+
     // const graph_data = team_data.map((team) => ({
     //   label: team.username,
     //   data: team.clue_log.map((value, index) => ([value, index]) )
@@ -51,12 +53,15 @@ class Dashboard extends React.Component {
       />
     );
     return (
-      <Container>
-        <h1>Dashboard</h1>
-        <h2>Leaderboard</h2>
-        {tile_list}
-        {/* <h2>History</h2>
-        <DashboardGraph data={graph_data} /> */}
+      <Container className="px-5">
+        <Row>
+          <Col md={{ span: 8, offset: 2 }}>
+            <h1 className="pt-5">LIVE STATS</h1>
+            {tile_list}
+            {/* <h2>History</h2>
+            <DashboardGraph data={graph_data} /> */}
+          </Col>
+        </Row>
       </Container>
     );
   }
