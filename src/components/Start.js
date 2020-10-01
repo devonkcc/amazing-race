@@ -221,11 +221,11 @@ class Start extends React.Component {
                     <div className="start__annagrams start__grocery-list mx-0 py-4">
                       <h4 className="">Anagrams:</h4>
                       <Row>
-                        <Col className="pl-0 pr-2 text-right" >parasitic →</Col>
+                        <Col className="pl-0 pr-2 text-right" >Parasitic →</Col>
                         <Col className="pl-0 text-left" >_ _ _ _ _ _ _ _ ' _</Col>
                       </Row>
                       <Row>
-                        <Col className="pl-0 pr-2 text-right" >genre →</Col>
+                        <Col className="pl-0 pr-2 text-right" >Genre →</Col>
                         <Col className="pl-0 text-left" >_ _ _ _ _</Col>
                       </Row>
                       <Row>
@@ -233,11 +233,11 @@ class Start extends React.Component {
                         <Col className="pl-0 text-left" >_ _</Col>
                       </Row>
                       <Row>
-                        <Col className="pl-0 pr-2 text-right" >yeahs →</Col>
+                        <Col className="pl-0 pr-2 text-right" >yeaHs →</Col>
                         <Col className="pl-0 text-left" >_ _ _ _ _</Col>
                       </Row>
                       <Row className="mb-3">
-                        <Col className="pl-0 pr-2 text-right" >lavley →</Col>
+                        <Col className="pl-0 pr-2 text-right" >laVley →</Col>
                         <Col className="pl-0 text-left" >_ _ _ _ _ _</Col>
                       </Row>
                         <div className="">
