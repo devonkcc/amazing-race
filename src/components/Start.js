@@ -9,6 +9,7 @@ import Countdown from "react-countdown"
 import barcode_example from '../assets/barcode_example.png'
 import snickers from '../assets/snickers.png'
 import gatorade from '../assets/gatorade.png'
+import statue from '../assets/statue.png'
 import {VALID_SNICKERS_UPC, VALID_GATORADE_UPC} from '../helpers/constants'
 import {db} from '../services/firebase';
 
@@ -120,11 +121,14 @@ class Start extends React.Component {
         });
       }
     }
+    else {
+      alert("Nope! Incorrect UPC code 😢")
+    }
   }
 
   render() {
     return (
-      <Container className="px-5">
+      <Container className="px-4">
         <Row>
           <Col md={{ span: 8, offset: 2 }}>
             {!this.state.countdown_complete ? 
@@ -214,7 +218,35 @@ class Start extends React.Component {
                     <h2 className="mt-5">Nice work! You’ve unlocked the fist clue!</h2>
                     <hr />
                     <h1 className="mb-2">Clue #1</h1>
-                    <p className="start__grocery-list">Clue that leads to Patricia’s Green…</p>
+                    <div className="start__annagrams start__grocery-list mx-0 py-4">
+                      <h4 className="">Anagrams:</h4>
+                      <Row>
+                        <Col className="pl-0 pr-2 text-right" >parasitic →</Col>
+                        <Col className="pl-0 text-left" >_ _ _ _ _ _ _ _ ' _</Col>
+                      </Row>
+                      <Row>
+                        <Col className="pl-0 pr-2 text-right" >genre →</Col>
+                        <Col className="pl-0 text-left" >_ _ _ _ _</Col>
+                      </Row>
+                      <Row>
+                        <Col className="pl-0 pr-2 text-right" >ni →</Col>
+                        <Col className="pl-0 text-left" >_ _</Col>
+                      </Row>
+                      <Row>
+                        <Col className="pl-0 pr-2 text-right" >yeahs →</Col>
+                        <Col className="pl-0 text-left" >_ _ _ _ _</Col>
+                      </Row>
+                      <Row className="mb-3">
+                        <Col className="pl-0 pr-2 text-right" >lavley →</Col>
+                        <Col className="pl-0 text-left" >_ _ _ _ _ _</Col>
+                      </Row>
+                        <div className="">
+                          <img  
+                            className="start__grocery-list-img"
+                            src={statue}
+                          ></img>
+                        </div>
+                    </div>
                   </div>
                 }
               </div>
