@@ -215,7 +215,7 @@ class Start extends React.Component {
                   </div>
                 :
                   <div>
-                    <h2 className="mt-5">Nice work! You’ve unlocked the fist clue!</h2>
+                    <h2 className="mt-5">Nice work! You’ve unlocked the first clue!</h2>
                     <hr />
                     <h1 className="mb-2">Clue #1</h1>
                     <div className="start__annagrams start__grocery-list mx-0 py-4">
